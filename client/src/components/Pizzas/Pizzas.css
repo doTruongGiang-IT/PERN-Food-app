@@ -1,0 +1,9 @@
+.pizzas {
+    margin:20px 40px;
+}
+
+.pizzas div {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}

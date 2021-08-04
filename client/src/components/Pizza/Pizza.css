@@ -1,0 +1,48 @@
+.pizza {
+    display: flex;
+    width: 300px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 20px 20px 0;
+}
+
+.pizza img {
+    height: 200px;
+    width: 200px;
+}
+
+.pizza h3{
+    margin: 15px 0;
+}
+
+.pizza-action {
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.pizza-action h3 {
+    margin-right: 100px;
+}
+
+.pizza-action button {
+    color: orangered;
+    background-color: white;
+    padding: 5px 25px;
+    cursor: pointer;
+    border-radius: 20px;
+    border: 1px solid orangered;
+    outline: none;
+    font-weight: 600;
+    transition: transform 0.2s ease-in-out;
+}
+
+.pizza-action button:hover {
+    background-color: orangered;
+    color: white;
+}
+
+.pizza-action button:active {
+    transform: scale(0.9);
+}

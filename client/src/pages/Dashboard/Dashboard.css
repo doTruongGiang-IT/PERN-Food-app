@@ -1,0 +1,24 @@
+.dashboard {
+    width: 100vw;
+    height: 100vh;
+    background-color: #FAF3F3;
+}
+
+.dashboard-section {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    margin: 30px 40px;
+}
+
+.dashboard-section h3 {
+    margin-bottom: 20px;
+}
+
+.dashboard-table{
+    background-color: white;
+    width: 100%;
+    text-align: left;
+    padding: 10px;
+}

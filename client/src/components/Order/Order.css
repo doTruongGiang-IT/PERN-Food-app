@@ -1,0 +1,8 @@
+.order td {
+    padding: 8px 0;
+}
+
+#orderID {
+    color: orange;
+    text-decoration: none;
+}

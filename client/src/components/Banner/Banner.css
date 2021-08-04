@@ -1,0 +1,42 @@
+.banner {
+    width: 100vw;
+    height: 100vh;
+    background-color: #FAF3F3;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.brief {
+    margin-left: 40px;
+}
+
+.brief p, h1, a {
+    margin-bottom: 15px;
+}
+
+.brief p {
+    font-weight: bold;
+}
+
+.brief h1 {
+    font-size: 40px;
+    margin-bottom: 30px;
+}
+
+.brief a {
+    text-decoration: none;
+    color: white;
+    background-color: orangered;
+    padding: 8px 20px;
+    border-radius: 15px;
+}
+
+.banner-logo {
+    margin-right: 40px;
+}
+
+.banner-logo img {
+    height: 600px;
+    width: 700px;
+}

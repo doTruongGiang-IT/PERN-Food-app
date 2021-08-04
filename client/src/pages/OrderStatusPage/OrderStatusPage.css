@@ -1,0 +1,92 @@
+.status-tracker {
+    min-height: 100vh;
+    background-color: #FAF3F3;
+}
+
+.status-section {
+    margin-top: 50px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-around;
+}
+
+.status-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.status-info p:first-child {
+    color: green;
+    padding: 10px;
+    background-color: white;
+    width: fit-content;
+    margin-bottom: 50px;
+}
+
+.status-process {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.status-details {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.status-details {
+    margin-bottom: 60px;
+    position: relative;
+}
+
+.status-details i {
+    font-size: 30px;
+}
+
+#dot {
+    font-size: 8px;
+}
+
+.status-process .status-details:first-child i:nth-child(2) {
+    margin: 0 30px;
+}
+
+.status-process .status-details:nth-child(2) i:nth-child(2) {
+    margin: 0 25px;
+}
+
+.status-process .status-details:nth-child(3) i:nth-child(2) {
+    margin: 0 25px;
+}
+
+.status-process .status-details:nth-child(4) i:nth-child(2) {
+    margin: 0 18px;
+}
+
+.status-process .status-details:last-child i:nth-child(2) {
+    margin: 0 25px;
+}
+
+.done {
+    color: lightgray;
+}
+
+.coming {
+    color: orangered;
+}
+
+#transaction {
+    font-size: 60px;
+    position: absolute;
+    top: 20px;
+    left: 54px;
+}
+
+.status-link {
+    text-decoration: none;
+}

@@ -1,0 +1,15 @@
+.order td {
+    padding: 8px 0;
+}
+
+#status {
+    padding: 5px 10px;
+    border: none;
+    outline: none;
+    box-shadow: 2px 2px 2px #999;
+    cursor: pointer;
+}
+
+#status:focus {
+    box-shadow: inset 2px 2px 2px #999;
+}

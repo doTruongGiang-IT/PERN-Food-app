@@ -1,0 +1,7 @@
+body, html {
+  overflow-x: hidden;
+  box-sizing: border-box;
+  color: #333;
+  scroll-behavior: smooth;
+}
+/* #FAF3F3 */

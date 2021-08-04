@@ -1,0 +1,99 @@
+.register-page {
+    width: 100vw;
+    height: 100vh;
+    background-color: #FAF3F3;
+}
+
+.register-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.register-form {
+    width: 400px;
+    height: fit-content;
+    background-color: white;
+    box-shadow: 5px 5px 4px #888888;
+    margin: 80px 0;
+}
+
+.form-group {
+    padding: 20px 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.group-action {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.form-group input {
+    box-shadow: 2px 2px 2px #999;
+    margin-top: 10px;
+    outline: none;
+    font-size: 20px;
+    padding: 10px 10px;
+    border: none;
+}
+
+.form-group input:focus {
+    box-shadow: inset 2px 2px 2px #999;
+}
+
+.group-action button {
+    color: white;
+    background-color: orangered;
+    padding: 10px 20px;
+    border: none;
+    outline: none;
+    border-radius: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+}
+
+.group-action button:active {
+    transform:  scale(0.9);
+}
+
+.login-link {
+    text-decoration: none;
+    color: orangered;
+}
+
+#quote {
+    color: #999;
+    font-size: 10px;
+    position: absolute;
+    bottom: 45px;
+}
+
+.form-input:invalid {
+    border: 2px solid red;
+}
+
+.register-username:invalid ~ .register-username-errors {
+    display: block;
+}
+
+.register-email:invalid ~ .register-email-errors {
+    display: block;
+}
+
+.register-password:invalid ~ .register-password-errors {
+    display: block;
+}
+
+.register-email-errors, .register-password-errors, .register-username-errors {
+    color: red;
+    display: none;
+}
