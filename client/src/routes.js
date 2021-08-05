@@ -34,7 +34,7 @@ const routes = [
         main: ({history}) => <Dashboard history={history} />
     },
     {
-        path: "/status",
+        path: "/status/:id",
         exact: true,
         main: ({history}) => <OrderStatusPage history={history} />
     },

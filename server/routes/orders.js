@@ -11,7 +11,7 @@ router.get("/", async (req, res) => {
             orderID = orderID.rows[0].id.toString();
             orders = await pool.query(`SELECT * FROM orders WHERE customer_id=${orderID}`);
         }else {
-            orders = await pool.query("SELECT * FROM orders");  
+            orders = await pool.query("SELECT * FROM orders ORDER BY id");  
         };
         if(!orders) res.status(400).json("Can't get order list");
         res.status(200).json(orders.rows);
@@ -23,9 +23,9 @@ router.get("/", async (req, res) => {
 
 router.get("/:id", async (req, res) => {
     try {
-        const order = await pool.query(`SELECT * FROM orders WHERE id=${req.params.id}`);
+        const order = await pool.query(`SELECT * FROM orders WHERE customer_id=${req.params.id}`);
         if(!order) res.status(400).json("Error ocurred");
-        res.status(200).json(order.rows[0]);
+        res.status(200).json(order.rows);
     } catch (error) {
         res.status(500).json(error);
         console.log("Get order error: "+error.message);  
@@ -40,9 +40,9 @@ router.post("/", async (req, res) => {
         const yyyy = today.getFullYear();
         today = mm + '/' + dd + '/' + yyyy;
 
-        const {address, status, customer_id, food_id} = req.body;
+        const {address, customer_id, food_id} = req.body;
         const newOrder = await pool.query(`INSERT INTO orders(address, placed_at, status, customer_id, food_id) VALUES($1,$2,$3,$4,$5)`,
-        [address, today, status, customer_id, food_id]);
+        [address, today, 'Order Placed', customer_id, food_id]);
         if(!newOrder) res.status(400).json("Wrong credentials");
         res.status(200).json(newOrder);
     } catch (error) {

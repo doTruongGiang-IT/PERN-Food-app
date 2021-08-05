@@ -37,9 +37,14 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-bottom: 60px;
+    position: relative;
 }
 
-.status-details {
+.Order-Placed, .Order-Confirmation, .Preparation, .Out-for-delivery, .Complete {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     margin-bottom: 60px;
     position: relative;
 }

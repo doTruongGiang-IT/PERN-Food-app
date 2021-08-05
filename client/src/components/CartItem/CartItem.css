@@ -28,3 +28,8 @@
 .item-price {
     font-weight: bold;
 }
+
+.item-remove i {
+    color: red;
+    cursor: pointer;
+}

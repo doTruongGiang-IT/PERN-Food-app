@@ -97,3 +97,8 @@
     color: red;
     display: none;
 }
+
+.errors p {
+    text-align: center;
+    color: red;
+}

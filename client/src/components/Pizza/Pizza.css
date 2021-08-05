@@ -1,6 +1,6 @@
 .pizza {
     display: flex;
-    width: 300px;
+    width: 320px;
     flex-direction: column;
     justify-content: center;
     align-items: center;

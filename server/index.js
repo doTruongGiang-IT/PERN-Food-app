@@ -2,6 +2,7 @@ const express = require("express");
 const authRoute = require("./routes/auth");
 const userRoute = require("./routes/users");
 const orderRoute = require("./routes/orders");
+const pizzaRoute = require("./routes/pizza");
 const multer = require("multer");
 const cors = require("cors");
 const path = require("path");
@@ -29,6 +30,7 @@ app.use(express.json());
 app.use("/api/auth", authRoute);
 app.use("/api/user", userRoute);
 app.use("/api/orders", orderRoute);
+app.use("/api/pizzas", pizzaRoute);
 
 app.listen(5000, () => {
     console.log("Server is running on port 5000...");
