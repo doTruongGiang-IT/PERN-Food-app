@@ -7,6 +7,7 @@ import {updateStatus} from '../../features/order/orderSlice';
 const CusOrder = ({order}) => {
     const dispatch = useDispatch();
     const [user, setUser] = useState({});
+    const [food, setFood] = useState({});
     const [status, setStatus] = useState("Order Placed");
 
     useEffect( () => {
@@ -14,8 +15,13 @@ const CusOrder = ({order}) => {
             const res = await axios.get(`http://localhost:5000/api/user/${order.customer_id}`);
             res.data && setUser(res.data);
         };
+        const getFood = async() => {
+            const res = await axios.get(`http://localhost:5000/api/pizzas/${order.food_id}`);
+            res.data && setFood(res.data);
+        };
         getUser();
-    }, [order.customer_id]);
+        getFood();
+    }, [order.customer_id, order.food_id]);
 
     const changeStatus = () => {
         let updateOrder = {id: order.id, status};
@@ -26,7 +32,7 @@ const CusOrder = ({order}) => {
         <tr className="order">
             <td>
                 <p>{order.id}</p>
-                <p>{order.name} - {order.qty}pcs</p>
+                <p><strong>{food.name} - {order.quantity}pcs</strong></p>
             </td>
             <td>{user.username}</td>
             <td>{order.address}</td>

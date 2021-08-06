@@ -7,7 +7,7 @@ import {getAllOrder, selectCusOrders} from '../../features/order/orderSlice';
 
 const Dashboard = ({history}) => {
     const dispatch = useDispatch();
-    const cusOrder = useSelector(selectCusOrders);
+    let cusOrder = useSelector(selectCusOrders);
     let temp = JSON.parse(localStorage.getItem("pern_food_auth"));
 
     useEffect(() => {
@@ -36,7 +36,9 @@ const Dashboard = ({history}) => {
                         {
                             cusOrder ?
                             cusOrder.map((order, index) => {
-                                return <CusOrder key={index} order={order} />
+                                if(order.status !== "Complete") {
+                                    return <CusOrder key={index} order={order} />
+                                };
                             }) : null
                         }
                     </tbody>

@@ -40,9 +40,9 @@ router.post("/", async (req, res) => {
         const yyyy = today.getFullYear();
         today = mm + '/' + dd + '/' + yyyy;
 
-        const {address, customer_id, food_id} = req.body;
-        const newOrder = await pool.query(`INSERT INTO orders(address, placed_at, status, customer_id, food_id) VALUES($1,$2,$3,$4,$5)`,
-        [address, today, 'Order Placed', customer_id, food_id]);
+        const {address, customer_id, food_id, quantity} = req.body;
+        const newOrder = await pool.query(`INSERT INTO orders(address, placed_at, status, customer_id, food_id, quantity) VALUES($1,$2,$3,$4,$5,$6)`,
+        [address, today, 'Order Placed', customer_id, food_id, quantity]);
         if(!newOrder) res.status(400).json("Wrong credentials");
         res.status(200).json(newOrder);
     } catch (error) {

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const Order = ({order}) => {
     return (
-        <tr className="order">
+        <tr className="order" style={{textDecoration: `${order.status === 'Complete' ? 'line-through' : 'none'}`}}>
             <td><Link onClick={() => localStorage.setItem("statusID", JSON.stringify(order.id))} to={`/status/${order.id}?status=${order.status}`} id="orderID">{order.id}</Link></td>
             <td>{order.address}</td>
             <td>{order.placed_at}</td>

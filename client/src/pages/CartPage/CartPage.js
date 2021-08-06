@@ -15,18 +15,28 @@ const CartPage = ({history}) => {
     let total = 0;
     let arrID = [];
     let temp = JSON.parse(localStorage.getItem("pern_food_auth"));
+    let user_cart = localStorage.getItem("user_cart") ? JSON.parse(localStorage.getItem("user_cart")) : [];
 
     const orderNow = () => {
-        cart.map((item) => arrID.push(item.id));
-        arrID.forEach((id) => {
-            console.log(id);
+        cart.map((item) => arrID.push({id: item.id, qty: item.qty}));
+        cart.map((item) => console.log(item));
+        arrID.forEach((item) => {
             let order = {
                 address,
                 customer_id: temp.id,
-                food_id: id
+                food_id: item.id,
+                quantity: item.qty
             };
             dispatch(createOrder(order));
-            dispatch(removeFromCart(id));
+            const today = new Date();
+            let dd = today.getDay();
+            let mm = today.getMonth() + 1;
+            let yyyy = today.getFullYear();
+            let hh = today.getHours();
+            let MM = today.getMinutes();
+            user_cart.push({cart, user_id: temp.id, time: `${dd}/${mm}/${yyyy} - ${hh}:${MM}`});
+            localStorage.setItem("user_cart", JSON.stringify(user_cart));
+            dispatch(removeFromCart(item.id));
         });
         history.push("/");
     };
