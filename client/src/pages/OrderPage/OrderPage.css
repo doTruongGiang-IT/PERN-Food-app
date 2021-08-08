@@ -1,7 +1,8 @@
 .order-page {
     width: 100vw;
-    height: 100vh;
+    min-height: calc(100vh - 80px);
     background-color: #FAF3F3;
+    margin-top: 80px;
 }
 
 #none {
@@ -18,7 +19,7 @@
 }
 
 .order-section h3 {
-    margin-bottom: 20px;
+    margin: 20px 0;
 }
 
 .order-table{
@@ -38,4 +39,10 @@
 
 .notification p {
     padding: 10px 20px;
+}
+
+@media screen and (min-width: 414px) and (max-width: 767px) {
+    .order-table thead tr th {
+        font-size: 12px;
+    }   
 }

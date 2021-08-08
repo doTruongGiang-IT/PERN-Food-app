@@ -17,8 +17,19 @@ const Header = () => {
         localStorage.removeItem("pern_food_auth");
         dispatch(logout());
     };
+
+    const openMenuMobile = () => {
+        let menu = document.querySelector(".menu-mobile");
+        if(menu.style.display === "" || menu.style.display === "none") menu.style.display = "block"
+    };
+
+    const closeMenuMobile = () => {
+        let menu = document.querySelector(".menu-mobile");
+        if(menu.style.display === "block") menu.style.display = "none"
+    };
     
     return (
+        <>
         <header className="header">
             <div className="logo">
                 <Link to="/"><img src={logo} alt="logo" /></Link>
@@ -54,8 +65,45 @@ const Header = () => {
                         <Link className="link" to="/cart"><img id="cart" src={cart} alt="cart" /></Link>
                     </li>
                 </ul>
+                <div className="header-mobile">
+                    <i onClick={openMenuMobile} className="header-icon-mobile fas fa-bars"></i>
+                </div>
             </div>
         </header>
+        <div className="menu-mobile w3-container w3-center w3-animate-right">
+            <h2 onClick={closeMenuMobile} className="close-menu">X</h2>
+            <ul className="menu-list-mobile">
+                <li className="menu-list-item-mobile">
+                    <a className="link-mobile" href="#all">Menu</a>
+                </li>
+                <li className="menu-list-item-mobile">
+                    <a className="link-mobile" href="#all">Offers</a>
+                </li>
+                {
+                    (temp !== null && temp.role === "admin") ?
+                    (
+                        
+                        <li className="menu-list-item-mobile">
+                            <Link className="link-mobile" to="/dashboard">Dashboard</Link>
+                        </li>
+                    ) : (
+                        <li className="menu-list-item-mobile">
+                            <Link className="link-mobile" to="/order">Orders</Link>
+                        </li>
+                    )
+                }
+                <li className="menu-list-item-mobile">
+                    {
+                        (auth && temp !== null) ? <img id="auth-mobile" onClick={userLogout} src={temp.profile ? temp.profile : authentication} alt="user" /> : <Link to="/login"><img src={profile} alt="user" /></Link>
+                    }
+                </li>
+                <li className="menu-list-item-mobile">
+                    {/* <Link className="link" to="/cart"><i class="fas fa-cart-arrow-down"></i></Link> */}
+                    <Link className="link-mobile" to="/cart"><img id="cart" src={cart} alt="cart" /></Link>
+                </li>
+            </ul>
+        </div>
+        </>
     )
 }
 

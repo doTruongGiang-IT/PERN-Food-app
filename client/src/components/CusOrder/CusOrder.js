@@ -32,7 +32,7 @@ const CusOrder = ({order}) => {
         <tr className="order">
             <td>
                 <p>{order.id}</p>
-                <p><strong>{food.name} - {order.quantity}pcs</strong></p>
+                <p id="food-name">{food.name} - {order.quantity}pcs</p>
             </td>
             <td>{user.username}</td>
             <td>{order.address}</td>

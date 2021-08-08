@@ -13,3 +13,28 @@
 #status:focus {
     box-shadow: inset 2px 2px 2px #999;
 }
+
+#food-name {
+    font-weight: bold;
+}
+
+@media screen and (min-width: 414px) and (max-width: 767px) {
+    .order td {
+        font-size: 10px;
+    }
+
+    #status {
+        width: 100px;
+    }
+
+    #food-name {
+        font-size: 10px;
+        font-weight: normal;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    #status {
+        width: 150px;
+    }
+}

@@ -1,7 +1,8 @@
 .dashboard {
     width: 100vw;
-    height: 100vh;
+    min-height: calc(100vh - 80px);
     background-color: #FAF3F3;
+    margin-top: 80px;
 }
 
 .dashboard-section {
@@ -21,4 +22,19 @@
     width: 100%;
     text-align: left;
     padding: 10px;
+}
+
+@media screen and (min-width: 414px) and (max-width: 767px) {
+    .dashboard {
+        width: 100%;
+    }
+
+    .dashboard-section {
+        margin: 30px 8px;
+    }
+
+    .dashboard-table thead tr th {
+        font-size: 10px;
+        font-weight: 500;
+    }   
 }

@@ -40,3 +40,24 @@
     height: 600px;
     width: 700px;
 }
+
+@media screen and (min-width: 414px) and (max-width: 767px) {
+    .banner {
+        height: 400px;
+    }
+
+    .banner-logo {
+        display: none;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    .banner {
+        height: 500px;
+    }
+
+    .banner-logo img {
+        height: 400px;
+        width: 450px;
+    }
+}

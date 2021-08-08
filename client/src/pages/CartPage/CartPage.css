@@ -1,6 +1,7 @@
 .cart-page {
     background-color: #FAF3F3;
-    min-height: 100vh;
+    min-height: calc(100vh - 80px);
+    margin-top: 80px;
 }
 
 .cart-section {
@@ -51,6 +52,7 @@
 .cart-logo {
     display: flex;
     align-items: center;
+    margin-top: 30px;
 }
 
 .cart-logo h3 {
@@ -104,4 +106,16 @@
 
 hr {
     margin: 10px 0;
+}
+
+@media screen and (min-width: 414px) and (max-width: 767px) {
+    .cart-section {
+        margin: 30px 5px 0 5px;
+    }
+
+    #empty {
+        width: 330px;
+        height: 300px;
+        margin: 38px 0;
+    }
 }

@@ -41,6 +41,12 @@ const CartPage = ({history}) => {
         history.push("/");
     };
 
+    const isDisabled = () => {
+        let result = true;
+        if(temp !== null && address !== "") result = false;
+        return result;
+    };
+
     return (
         <div className="cart-page">
             <Header />
@@ -66,7 +72,12 @@ const CartPage = ({history}) => {
                             <div className="cart-total">
                                 <p id="total">Total Amount: <span>${total}</span></p>
                                 <input type="text" placeholder="Address..." value={address} onChange={e => setAddress(e.target.value)} />
-                                <button onClick={orderNow} type="button">Order now</button>
+                                {/* {
+                                    temp === null ?
+                                    <button disabled={isDisabled} onClick={orderNow} type="button">Sign in to order</button>
+                                    : <button disabled={isDisabled} onClick={orderNow} type="button">Order now</button>
+                                } */}
+                                <button disabled={isDisabled()} onClick={orderNow} type="button">{temp === null ? "Sign in to order" : "Order now"}</button>
                             </div>
                         </div>
                     ) :

@@ -46,3 +46,9 @@
 .pizza-action button:active {
     transform: scale(0.9);
 }
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    .pizza {
+        width: 260px;
+    }
+}

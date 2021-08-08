@@ -5,6 +5,9 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    position: fixed;
+    top: 0;
+    z-index: 10;
 }
 
 .logo {
@@ -29,7 +32,10 @@
 
 .menu-list-item:nth-child(1):hover,
 .menu-list-item:nth-child(2):hover,
-.menu-list-item:nth-child(3):hover {
+.menu-list-item:nth-child(3):hover,
+.menu-list-item-mobile:nth-child(1):hover,
+.menu-list-item-mobile:nth-child(2):hover,
+.menu-list-item-mobile:nth-child(3):hover {
     border-bottom: 3px solid orangered;
 }
 
@@ -43,13 +49,14 @@
     color: white;
 }
 
-.menu-list-item img {
+.menu-list-item img, .menu-list-item-mobile img {
     width: 40px;
     height: 40px;
     cursor: pointer;
 }
 
-.menu-list-item:last-child {
+.menu-list-item:last-child,
+.menu-list-item-mobile:last-child {
     background-color: orangered;
     padding: 8px 20px;
     border-radius: 20px;
@@ -58,4 +65,63 @@
 #cart {
     width: 20px;
     height: 20px;
+}
+
+.menu-mobile, .header-mobile {
+    display: none;
+}
+
+.menu-mobile {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 20;
+    background-color: #666;
+}
+
+.menu-list-mobile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 40px 0;
+    list-style: none;
+}
+
+.menu-list-item-mobile {
+    margin: 10px 0;
+}
+
+.link-mobile {
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+}
+
+.close-menu {
+    color: white;
+    font-weight: 700;
+    text-align: right;
+    margin: 10px;
+    cursor: pointer;
+}
+
+#auth-mobile {
+    padding: 8px;
+    background-color: white;
+    border-radius: 50%;
+}
+
+@media screen and (min-width: 414px) and (max-width: 767px) {
+    .menu-list {
+        display: none;
+    }
+
+    .header-mobile {
+        display: block;
+        font-size: 30px;
+        cursor: pointer;
+    }
 }

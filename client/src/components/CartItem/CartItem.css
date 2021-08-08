@@ -33,3 +33,51 @@
     color: red;
     cursor: pointer;
 }
+
+@media screen and (min-width: 414px) and (max-width: 1024px) {
+    .item-info {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+
+    .item-info img {
+        height: 50px;
+        width: 50px;
+        margin-right: 10px; 
+    }
+
+    .sub-info {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+
+    .sub-info h3, p {
+        font-size: 12px;
+        margin-bottom: 2px;
+    }
+
+    .sub-info h3 {
+        font-weight: bold;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    .sub-info h3, p {
+        font-size: 16px;
+        margin-bottom: 2px;
+    }
+
+    .sub-info h3 {
+        font-weight: bold;
+    }
+
+    .item-info img {
+        height: 100px;
+        width: 100px;
+        margin-right: 10px; 
+    }
+}
