@@ -1,9 +1,52 @@
 .pizzas {
     margin:20px 40px;
+    display: flex;
+    flex-direction: column;
 }
 
-.pizzas div {
+.pizzas div:nth-child(2) {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+}
+
+.search_filter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#search_filter input {
+    width: 250px;
+    padding: 0 10px;
+    box-shadow: 2px 2px 2px #999;
+    outline: none;
+    border: none;
+}
+
+#search_filter input:focus {
+    box-shadow: inset 2px 2px 2px #999;
+}
+
+#search_filter button {
+    box-shadow: 2px 2px 2px #999;
+    background-color: orange;
+    outline: none;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+#search_filter button:active {
+    transform: scale(0.9);
+    transition: all 0.5s ease;
+}
+
+#filter {
+    margin-left: 20px;
+    padding: 5px 10px;
+    border: none;
+    outline: none;
+    box-shadow: 2px 2px 2px #999;
+    cursor: pointer;
 }

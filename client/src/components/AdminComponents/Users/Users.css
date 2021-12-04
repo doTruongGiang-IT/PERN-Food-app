@@ -1,0 +1,38 @@
+.users {
+    padding: 20px 40px;
+    flex: 5;
+    height: calc(100vh - 80px);
+}
+
+.usersWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.userCreate {
+    width: 100%;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.userList {
+    padding: 20px;
+    box-shadow: 0 0 15px -10px rgba(0, 0, 0, 0.75);
+    height: 500px;
+    width: 100%;
+}
+
+.export-btn {
+    height: 38px;
+    display: flex;
+    align-items: center;
+}
+
+.export {
+    text-decoration: none;
+    padding-top: 26%;
+}

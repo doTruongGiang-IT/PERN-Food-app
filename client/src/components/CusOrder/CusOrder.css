@@ -2,6 +2,20 @@
     padding: 8px 0;
 }
 
+#cus_order {
+    color: orange;
+    text-decoration: none;
+    background-color: transparent;
+    cursor: pointer;
+    outline: none;
+    border: none;
+}
+
+.orderProductContainer img{
+    width: 80px;
+    height: 80px;
+}
+
 #status {
     padding: 5px 10px;
     border: none;

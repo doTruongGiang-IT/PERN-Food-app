@@ -34,8 +34,9 @@ const LoginPage = ({history}) => {
         if(loginErrors === false) {
             if(Object.keys(auth).length !== 0) {
                 localStorage.setItem("pern_food_auth", JSON.stringify(auth));
-                if(auth.role === "admin") history.push("/dashboard");
+                if(auth.role === "manager") history.push("/dashboard");
                 if(auth.role === "user") history.push("/");
+                if(auth.role === "admin") history.push("/admin");
             };
         };
         if(temp !== null) {
@@ -49,7 +50,7 @@ const LoginPage = ({history}) => {
             <div className="login-section">
                 <form className="login-form">
                     <div style={{display: `${loginErrors ? 'block' : 'none'}`}} className="errors">
-                        <p>Wrong credentials</p>
+                        <p>Account has been blocked or Wrong credentials</p>
                     </div>
                     <div className="form-group">
                         <label>Email</label>

@@ -1,7 +1,9 @@
+@import url("https://cdn.syncfusion.com/ej2/material.css");
 body, html {
   overflow-x: hidden;
   box-sizing: border-box;
   color: #333;
   scroll-behavior: smooth;
+  /* background-color: #FAF3F3; */
 }
 /* #FAF3F3 */

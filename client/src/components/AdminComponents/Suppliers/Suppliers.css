@@ -1,0 +1,27 @@
+.suppliers {
+    padding: 20px 40px;
+    flex: 5;
+    height: calc(100vh - 80px);
+}
+
+.suppliersWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.supplierExport, .supplierInfo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 40px;
+}
+
+.supplierList {
+    padding: 20px;
+    box-shadow: 0 0 15px -10px rgba(0, 0, 0, 0.75);
+    height: 500px;
+    width: 65%;
+}

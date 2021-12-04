@@ -3,6 +3,11 @@
     min-height: calc(100vh - 80px);
     background-color: #FAF3F3;
     margin-top: 80px;
+    overflow-y: scroll;
+}
+
+.order-page::-webkit-scrollbar {
+    display: none;
 }
 
 #none {

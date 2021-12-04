@@ -1,0 +1,45 @@
+.userAddForm {
+    padding: 20px 40px;
+    flex: 5;
+    height: calc(100vh - 80px);
+    display: flex;
+    justify-content: center;
+}
+
+.userAddFormWrapper {
+    padding: 20px;
+    box-shadow: 0 0 15px -10px rgba(0, 0, 0, 0.75);
+    height: fit-content;
+    width: 40%;
+}
+
+.userAddFormWrapper h2 {
+    text-align: center;
+    background-color: orangered;
+    border-radius: 30px;
+    color: white;
+}
+
+.form-group-user {
+    padding: 20px 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.form-group-user input,
+.form-group-user select {
+    box-shadow: 2px 2px 2px #999;
+    margin-top: 10px;
+    outline: none;
+    font-size: 20px;
+    padding: 10px 10px;
+    width: 100%;
+    border: none;
+}
+
+.form-group-user input:focus,
+.form-group-user select:focus {
+    box-shadow: inset 2px 2px 2px #999;
+}

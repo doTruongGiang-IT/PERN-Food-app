@@ -7,6 +7,14 @@
     text-decoration: none;
 }
 
+#btnDetails {
+    background-color: transparent;
+    color: orange;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+
 @media screen and (min-width: 414px) and (max-width: 767px) {
     .order td {
         font-size: 10px;

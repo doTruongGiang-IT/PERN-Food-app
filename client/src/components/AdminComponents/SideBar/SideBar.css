@@ -1,0 +1,28 @@
+.sideBar {
+    padding: 20px 40px;
+    flex: 1;
+    height: calc(100vh - 80px);
+    background-color: #FAF3F3;
+    position: sticky;
+    top: 80px;
+}
+
+.sideBarList {
+    list-style: none;
+}
+
+.sideBarListItem {
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.sideBarListItem.active, .sideBarListItem:hover {
+    background-color: orangered;
+    color: white;
+    transition: all 0.2s ease;
+}

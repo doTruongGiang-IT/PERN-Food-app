@@ -1,0 +1,19 @@
+.admin {
+    width: 100vw;
+    min-height: calc(100vh - 80px);
+    overflow-y: scroll;
+}
+
+.admin::-webkit-scrollbar {
+    display: none;
+}
+
+.admin-section {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.main-content {
+    flex: 5;
+}

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, {useState} from 'react';
 import Header from '../../components/Header/Header';
 import './CartPage.css';
@@ -6,47 +7,80 @@ import cartImg from '../../assets/cart-black.png';
 import { Link } from 'react-router-dom';
 import CartItem from '../../components/CartItem/CartItem';
 import { useSelector, useDispatch } from 'react-redux';
-import {selectCart, createOrder, removeFromCart} from '../../features/cart/cartSlice';
+import {selectCart, createOrder, removeFromCart, createOrderDetails, selectLatestOrder, addCheese, upQuantity, downQuantity} from '../../features/cart/cartSlice';
+import axios from 'axios';
+import { processToCheckOut } from '../../features/checkoutOnlie/checkout';
 
 const CartPage = ({history}) => {
     const [address, setAddress] = useState("");
+    const [phone, setPhone] = useState("");
     const dispatch = useDispatch();
-    const cart = useSelector(selectCart);
+    let cart = useSelector(selectCart);
+    // let temp_cart = cart;
+    // const [newCart, setNewCart] = useState(cart);
+    const [payment, setPayment] = useState("offline");
     let total = 0;
-    let arrID = [];
     let temp = JSON.parse(localStorage.getItem("pern_food_auth"));
     let user_cart = localStorage.getItem("user_cart") ? JSON.parse(localStorage.getItem("user_cart")) : [];
 
-    const orderNow = () => {
-        cart.map((item) => arrID.push({id: item.id, qty: item.qty}));
-        cart.map((item) => console.log(item));
-        arrID.forEach((item) => {
-            let order = {
-                address,
-                customer_id: temp.id,
-                food_id: item.id,
+    // console.log(newCart);
+    const orderNow = async () => {
+        let order = {
+            address,
+            customer_id: temp.userid,
+            price: total,
+            phone
+        };
+        await dispatch(createOrder(order));
+        await dispatch(selectLatestOrder(temp.userid));
+        let Latestorder = await axios.get(`http://localhost:5000/api/order/latest/${temp.userid}`)
+                            .then(res => res.data)
+                            .then(data => createDetails(data.orderid))
+                            .catch(err => console.log(err.message));
+
+        if(payment === "online") {
+            const checkoutContent = {
+                "username": cart
+            };
+            await dispatch(processToCheckOut(checkoutContent));
+        };
+        
+        if(payment === "offline") {
+            history.push("/");
+        };
+    };
+    
+    const createDetails = (orderid) => {
+        cart.forEach(async (item) => {
+            let detail = {
+                orderid: orderid,
+                productid: item.productid,
+                accompanyid: item.moreCheese ? 1 : null,
                 quantity: item.qty
             };
-            dispatch(createOrder(order));
+            await dispatch(createOrderDetails(detail));
             const today = new Date();
-            let dd = today.getDay();
-            let mm = today.getMonth() + 1;
-            let yyyy = today.getFullYear();
-            let hh = today.getHours();
-            let MM = today.getMinutes();
-            user_cart.push({cart, user_id: temp.id, time: `${dd}/${mm}/${yyyy} - ${hh}:${MM}`});
+            user_cart.push({cart, user_id: temp.userid, time: today});
             localStorage.setItem("user_cart", JSON.stringify(user_cart));
-            dispatch(removeFromCart(item.id));
+            dispatch(removeFromCart(item.productid));
         });
-        history.push("/");
     };
 
     const isDisabled = () => {
         let result = true;
-        if(temp !== null && address !== "") result = false;
+        let regex = "^[\\+]?[(]?[0-9]{3}[)]?[-\\s\\.]?[0-9]{3}[-\\s\\.]?[0-9]{4,6}$";
+        if(temp !== null && address !== "" && phone !== "" && phone.match(regex)) result = false;
         return result;
     };
 
+    const checkCheese = (item) => {
+        dispatch(addCheese(item));
+    };
+
+    const handleQuantity = (item, type) => {
+        type === "up" ? dispatch(upQuantity(item)) : dispatch(downQuantity(item));
+    };
+    
     return (
         <div className="cart-page">
             <Header />
@@ -60,23 +94,45 @@ const CartPage = ({history}) => {
                                 <h3>Order Summary</h3>
                             </div>
                             <hr />
-                            <div className="cart-list">
+
+                            {/* <div className="cart-list">
                                 {
                                     cart.map((item, index) => {
-                                        total += item.price*item.qty;
-                                        return <CartItem  key={index} item={item} />
+                                        total += (item.product_price*item.qty+(item.moreCheese===true ? 1 : 0));
+                                        return <CartItem  key={index} item={item} moreCheese={checkCheese} handleQuantity={handleQuantity} />
                                     })
                                 }
-                            </div>
+                            </div> */}
+
+                            <table className="cart-list">
+                                <thead>
+                                    <th>Product</th>
+                                    <th>Quantity</th>
+                                    <th>Price</th>
+                                    <th>More Cheese</th>
+                                    <th>Remove</th>
+                                </thead>
+                                <tbody>
+                                    {
+                                        cart.map((item, index) => {
+                                            total += (item.product_price*item.qty+(item.moreCheese===true ? 1 : 0));
+                                            return <CartItem  key={index} item={item} moreCheese={checkCheese} handleQuantity={handleQuantity} />
+                                        })
+                                    }
+                                </tbody>
+                            </table>
                             <hr />
                             <div className="cart-total">
-                                <p id="total">Total Amount: <span>${total}</span></p>
+                                <p id="total"><strong>Total Amount:</strong> <span>${total}</span></p>
+                                <div>
+                                    <strong>Choose Payment Method</strong>
+                                    <select id="paymentMethod" value={payment} onChange={e => setPayment(e.target.value)}>
+                                        <option value="online">Online</option>
+                                        <option value="offline">Offline</option>
+                                    </select>
+                                </div>
                                 <input type="text" placeholder="Address..." value={address} onChange={e => setAddress(e.target.value)} />
-                                {/* {
-                                    temp === null ?
-                                    <button disabled={isDisabled} onClick={orderNow} type="button">Sign in to order</button>
-                                    : <button disabled={isDisabled} onClick={orderNow} type="button">Order now</button>
-                                } */}
+                                <input type="text" placeholder="Phone number..." value={phone} onChange={e => setPhone(e.target.value)} />
                                 <button disabled={isDisabled()} onClick={orderNow} type="button">{temp === null ? "Sign in to order" : "Order now"}</button>
                             </div>
                         </div>

@@ -3,6 +3,11 @@
     min-height: calc(100vh - 80px);
     background-color: #FAF3F3;
     margin-top: 80px;
+    overflow-y: scroll;
+}
+
+.dashboard::-webkit-scrollbar {
+    display: none;
 }
 
 .dashboard-section {
@@ -22,6 +27,23 @@
     width: 100%;
     text-align: left;
     padding: 10px;
+}
+
+#filter_status, #filter_staff {
+    padding: 5px 10px;
+    border: none;
+    outline: none;
+    box-shadow: 2px 2px 2px #999;
+    cursor: pointer;
+    margin-left: 20px;
+}
+
+.search_filter {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 }
 
 @media screen and (min-width: 414px) and (max-width: 767px) {

@@ -1,0 +1,73 @@
+.statistics_page {
+    width: 100vw;
+    min-height: calc(100vh - 80px);
+    background-color: #FAF3F3;
+    margin-top: 80px;
+    overflow-y: scroll;
+}
+
+.statistics_page h2{
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.statistics_page::-webkit-scrollbar {
+    display: none;
+}
+
+.statistics {    
+    margin: 30px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.statistics_print {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 100px;
+}
+
+.statistics_order, .statistics_bestSeller {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.statistics_bestSeller {
+    flex-direction: column;
+}
+
+.statistics_part {
+    width: 100%;
+}
+
+.statistics_income {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.statistics_income div{
+    flex: 1;
+}
+
+.print-btn {
+    background-color: orangered;
+    border: none;
+    outline: none;
+    padding: 5px 10px;
+    color: white;
+    cursor: pointer;
+    box-shadow: 2px 2px 2px #999;
+    margin-bottom: 20px;
+}
+
+.print-btn:active {
+    transform: scale(0.9);
+    transition: .5s all ease;
+}

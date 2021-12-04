@@ -36,23 +36,31 @@ const Header = () => {
             </div>
             <div className="menu">
                 <ul className="menu-list">
-                    <li className="menu-list-item">
-                        <a className="link" href="#all">Menu</a>
-                    </li>
-                    <li className="menu-list-item">
-                        <a className="link" href="#all">Offers</a>
-                    </li>
+                    
                     {
-                        (temp !== null && temp.role === "admin") ?
+                        (temp !== null && temp.role === "manager") ?
                         (
-                            
+                            <>
+                            <li className="menu-list-item">
+                                <Link className="link" to="/statistics">Statistics</Link>
+                            </li>
                             <li className="menu-list-item">
                                 <Link className="link" to="/dashboard">Dashboard</Link>
                             </li>
+                            </>
+                            
                         ) : (
+                            <>
+                            <li className="menu-list-item">
+                                <Link className="link" to="/">Pizza</Link>
+                            </li>
+                            <li className="menu-list-item">
+                                <Link className="link" to="/drinks">Drinks</Link>
+                            </li>
                             <li className="menu-list-item">
                                 <Link className="link" to="/order">Orders</Link>
                             </li>
+                            </>
                         )
                     }
                     <li className="menu-list-item">
@@ -73,23 +81,30 @@ const Header = () => {
         <div className="menu-mobile w3-container w3-center w3-animate-right">
             <h2 onClick={closeMenuMobile} className="close-menu">X</h2>
             <ul className="menu-list-mobile">
-                <li className="menu-list-item-mobile">
-                    <a className="link-mobile" href="#all">Menu</a>
-                </li>
-                <li className="menu-list-item-mobile">
-                    <a className="link-mobile" href="#all">Offers</a>
-                </li>
+                    
                 {
-                    (temp !== null && temp.role === "admin") ?
+                    (temp !== null && temp.role === "manager") ?
                     (
-                        
+                        <>
+                        <li className="menu-list-item-mobile">
+                            <Link className="link-mobile" to="/statistics">Statistics</Link>
+                        </li>
                         <li className="menu-list-item-mobile">
                             <Link className="link-mobile" to="/dashboard">Dashboard</Link>
                         </li>
+                        </>
                     ) : (
-                        <li className="menu-list-item-mobile">
-                            <Link className="link-mobile" to="/order">Orders</Link>
+                        <>
+                        <li className="menu-list-item">
+                            <Link className="link" to="/">Pizza</Link>
                         </li>
+                        <li className="menu-list-item">
+                            <Link className="link" to="/drinks">Drinks</Link>
+                        </li>
+                        <li className="menu-list-item-mobile">
+                            <Link className="link" to="/order">Orders</Link>
+                        </li>
+                        </>
                     )
                 }
                 <li className="menu-list-item-mobile">

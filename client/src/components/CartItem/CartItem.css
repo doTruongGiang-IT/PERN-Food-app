@@ -34,6 +34,22 @@
     cursor: pointer;
 }
 
+.item-quantity {
+    display: flex;
+}
+
+#item-quantity-btn {
+    margin-left: 10px;
+}
+
+#item-quantity-btn button{
+    background-color: none;
+    outline: none;
+    border: none;
+    margin-right: 5px;
+    cursor: pointer;
+}
+
 @media screen and (min-width: 414px) and (max-width: 1024px) {
     .item-info {
         display: flex;

@@ -9,12 +9,15 @@ const Pizza = ({pizza}) => {
 
     return (
         <div className="pizza">
-            <img src={pizzaImg} alt="pizza" />
-            <h3>{pizza.name}</h3>
-            <p>{pizza.size}</p>
+            <img src={pizza.product_image} alt="pizza" />
+            <h3>{pizza.product_name}</h3>
+            <p>Size: {pizza.product_size}</p>
             <div className="pizza-action">
-                <h3>${pizza.price}</h3>
+                <h3>${pizza.product_price}</h3>
                 <button onClick={() => dispatch(addToCart(pizza))} type="button">+ Add</button>
+            </div>
+            <div className="description">
+                {pizza.product_desc}
             </div>
         </div>
     )

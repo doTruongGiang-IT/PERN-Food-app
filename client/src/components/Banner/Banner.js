@@ -1,8 +1,10 @@
 import React from 'react';
 import './Banner.css';
-import banner from '../../assets/hero-pizza.png'
+import banner from '../../assets/hero-pizza.png';
+import banner2 from '../../assets/pepsi.png';
 
 const Banner = () => {
+
     return (
         <div className="banner">
             <div className="brief">
@@ -11,7 +13,7 @@ const Banner = () => {
                 <a href="#all">Order now</a>
             </div>
             <div className="banner-logo">
-                <img src={banner} alt="banner logo" />
+                <img src={window.location.pathname === "/" ? banner : banner2} alt="banner logo" />
             </div>
         </div>
     )

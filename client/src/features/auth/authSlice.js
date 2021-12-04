@@ -48,7 +48,7 @@ export const authSlice = createSlice({
             .addCase(getAuth.fulfilled, (state, action) => {
                 return {...state, auth: action.payload, loading: false, errors: false};
             })
-            .addCase(getAuth.rejected, (state) => {
+            .addCase(getAuth.rejected, (state, action) => {
                 return {...state, loading: false, errors: true};
             })
     }

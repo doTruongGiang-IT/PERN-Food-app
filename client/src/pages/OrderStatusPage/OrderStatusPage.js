@@ -7,22 +7,23 @@ import { useLocation } from 'react-router';
 const OrderStatusPage = ({history}) => {
     let temp = JSON.parse(localStorage.getItem("pern_food_auth"));
     const status = new URLSearchParams(useLocation().search).get("status");
-    const [statusID, setStatusID] = useState({});
+    const [statusID, setStatusID] = useState({id: 0, class: ""});
     // eslint-disable-next-line react-hooks/exhaustive-deps
     const statusList = [{class: 'Order-Placed', id: 1}, {class: 'Order-Confirmation', id: 2}, 
                         {class: 'Preparation', id: 3}, {class: 'Out-for-delivery', id: 4}, {class: 'Complete', id: 5}];
 
     useEffect(() => {
         const res = statusList.find((item) => {
-            item.class = item.class.replace("-", " ");
+            item.class = item.class.replaceAll("-", " ");
             return item.class.includes(status)
         });
         setStatusID(res);
-
+        
         if(temp === null) {
             history.push("/");
         };
-    }, [history, temp, status, statusList]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [temp]);
 
     return (
         <div className="status-tracker">
