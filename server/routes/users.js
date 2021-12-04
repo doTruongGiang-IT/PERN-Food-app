@@ -19,9 +19,9 @@ router.post("/", async (req, res) => {
 
 router.put("/:id", async (req, res) => {
     try {
-        const {id, username, email, is_active} = await req.body;
+        const {id, username, email, is_active, role} = await req.body;
         let updateUser = null;
-        updateUser = await pool.query(`UPDATE users SET username='${username}', email='${email}', is_active=${is_active} WHERE userid=${id} RETURNING *`);
+        updateUser = await pool.query(`UPDATE users SET username='${username}', email='${email}', is_active=${is_active}, role='${role}' WHERE userid=${id} RETURNING *`);
         // if(user.password) {
         //     const salt = await bcrypt.genSalt(10);
         //     const hashedPass = await bcrypt.hash(user.password, salt);

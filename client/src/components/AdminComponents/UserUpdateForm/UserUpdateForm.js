@@ -7,6 +7,7 @@ const UserUpdateForm = ({user, update}) => {
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [is_active, setIsActive] = useState(true);
+    const [role, setRole] = useState("");
     const usernameRef = useRef();
     const emailRef = useRef();
     const isUsernameVisible = useOnScreen(usernameRef);
@@ -16,7 +17,8 @@ const UserUpdateForm = ({user, update}) => {
         setUsername(user.username);
         setEmail(user.email);
         setIsActive(user.is_active);
-    }, [user.username, user.email, user.is_active]);
+        setRole(user.role);
+    }, [user.username, user.email, user.is_active, user.role]);
 
     const isDisabled = () => {
         let result = false;
@@ -25,7 +27,7 @@ const UserUpdateForm = ({user, update}) => {
     };
 
     const handleUpdate = () => {
-        update(user.userid, username, email, is_active);
+        update(user.userid, username, email, is_active, role);
         setUsername("");
         setEmail("");
         setIsActive(true);
@@ -59,6 +61,13 @@ const UserUpdateForm = ({user, update}) => {
                             onChange={e => setEmail(e.target.value)}
                         />
                         <p ref={emailRef} className="register-email-errors">Please fill in the right format of email</p>
+                    </div>
+                    <div className="form-group-user">
+                        <label>Role</label>
+                        <select value={role} onChange={e => setRole(e.target.value)} >
+                            <option value="manager">Manager</option>
+                            <option value="user">User</option>
+                        </select>
                     </div>
                     <div className="form-group-user">
                         <label>Active</label>

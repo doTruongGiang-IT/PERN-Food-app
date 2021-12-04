@@ -35,8 +35,8 @@ const UserUpdatePage = () => {
         setType(type);
     };
 
-    const handleUpdate = async (id, username, email, is_active) => {
-        await dispatch(updateUser({id, username, email, is_active}));
+    const handleUpdate = async (id, username, email, is_active, role) => {
+        await dispatch(updateUser({id, username, email, is_active, role}));
         history.push("/admin");
     };
 
