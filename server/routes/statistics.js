@@ -13,6 +13,18 @@ router.get("/order_status", async (req, res) => {
     };
 });
 
+router.get("/statsStaff", async (req, res) => {
+    let staffs = null;
+    try {
+        staffs = await pool.query("SELECT staffid, COUNT(*) AS number_of_order, SUM(order_price) AS total FROM orders WHERE status='Complete' GROUP BY staffid HAVING COUNT(*)>0");  
+        if(!staffs) res.status(400).json("Can't stats staff list");
+        res.status(200).json(staffs.rows);
+    } catch (error) {
+        res.status(500).json(error);
+        console.log("Get stats staff list error: "+error.message);  
+    };
+});
+
 router.get("/pizza", async (req, res) => {
     let pizzas = null;
     try {

@@ -13,7 +13,7 @@ const Drinks = ({drinks, handleSearch}) => {
     return (
         <div className="pizzas">
             <div className="search_filter">
-                <h3 id="all">All Pizzas</h3>
+                <h3 id="all">All Drinks</h3>
                 <div id="search_filter">
                     <input type="text" placeholder="Enter key search..." value={search} onChange={e => setSearch(e.target.value)} />
                     <button onClick={sendSearch}>Search</button>

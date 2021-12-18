@@ -4,26 +4,31 @@ import './StatisticsPage.css';
 import Header from '../../components/Header/Header';
 import { getAllProducts, selectAllProducts } from '../../features/pizzas/pizzaSlice';
 import { getAllOrder, selectCusOrders } from '../../features/order/orderSlice';
+import { getStaffs, selectStaffs } from '../../features/staff/staff';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
 import { selectAuth } from '../../features/auth/authSlice';
 import AreaChartComponent from '../../components/AreaChart/AreaChart';
 import PieChartComponent from '../../components/PieChart/PieChart';
 import BarChartComponent from '../../components/BarChart/BarChart';
-import { getStatisticsOrders, selectOrderStatus, selectDataPizza, getStatisticsPizza } from '../../features/statistics/statistics';
+import { getStatisticsOrderPerStaff, selectOrderPerStaff, getStatisticsOrders, selectOrderStatus, selectDataPizza, getStatisticsPizza } from '../../features/statistics/statistics';
+import PieChartStaff from '../../components/PieChartStaff/PieChartStaff';
 // import { statisticsBestSeller, statisticsIncome, selectDataPizza } from '../../features/statistics/statistics';
 
 const StatisticsPage = () => {
     const dispatch = useDispatch();
     const orders = useSelector(selectCusOrders);
+    const staffs = useSelector(selectStaffs);
     const products = useSelector(selectAllProducts);
     const history = useHistory();
     const auth = useSelector(selectAuth);
     let temp = JSON.parse(localStorage.getItem("pern_food_auth"));
     const statisticsOrder = useSelector(selectOrderStatus);
     const statisticsPizza = useSelector(selectDataPizza);
+    const statisticsOrderPerStaff = useSelector(selectOrderPerStaff);
     let dataPizza = [];
     let dataOrder = [];
+    let dataOrderPerStaff = [];
     const areaRef = useRef();
     const barRef = useRef();
 
@@ -45,11 +50,25 @@ const StatisticsPage = () => {
         return {"name": status.status, "value": Number.parseInt(status.number)};
     }) : [];
 
+    dataOrderPerStaff = statisticsOrderPerStaff.length > 0 ? statisticsOrderPerStaff.map(orderPerStaff => {
+        return {"name": orderPerStaff.staffid !== null ? orderPerStaff.staffid : "No Staff yet", "value": Number.parseInt(orderPerStaff.total)};
+    }) : [];
+    
+    for(let index in staffs) {
+        for(let id in dataOrderPerStaff) {
+            if(staffs[index].staffid === dataOrderPerStaff[id].name) {
+                dataOrderPerStaff[id].name = staffs[index].first_name + " " + staffs[index].last_name;
+            };
+        };
+    };
+
     useEffect(() => {
         dispatch(getAllOrder());
         dispatch(getAllProducts());
+        dispatch(getStaffs());
         dispatch(getStatisticsOrders());
         dispatch(getStatisticsPizza());
+        dispatch(getStatisticsOrderPerStaff());
     }, [dispatch]);
 
     useEffect(() => {
@@ -141,6 +160,10 @@ const StatisticsPage = () => {
                             <strong>Best Seller: {dataPizza.length > 0 ? dataPizza[0].name : ""}</strong>
                         </div>
                     </div>
+                </div>
+                <div className="statistics_part">
+                    <h2><strong>Statistics Order per Each Staff</strong></h2>
+                    <PieChartStaff data={dataOrderPerStaff}/>
                 </div>
                 <div className="statistics_part">
                     <h2><strong>Revenue Statistics</strong></h2>

@@ -4,6 +4,7 @@ import axios from "axios";
 const initialState = {
     dataPizza: [],
     orderStatus: [],
+    statsStaff: [],
     loading: false,
     error: false
 };
@@ -14,7 +15,15 @@ export const getStatisticsOrders = createAsyncThunk(
         const res = await axios.get("http://localhost:5000/api/statistics/order_status");
         return res.data;
     }
-)
+);
+
+export const getStatisticsOrderPerStaff = createAsyncThunk(
+    'statistics/getStatisticsOrderPerStaff',
+    async () => {
+        const res = await axios.get("http://localhost:5000/api/statistics/statsStaff");
+        return res.data;
+    }
+);
 
 export const getStatisticsPizza = createAsyncThunk(
     'statistics/getStatisticsPizza',
@@ -22,7 +31,7 @@ export const getStatisticsPizza = createAsyncThunk(
         const res = await axios.get("http://localhost:5000/api/statistics/pizza");
         return res.data;
     }
-)
+);
 
 export const statisticsSlice = createSlice({
     name: 'statistics',
@@ -57,6 +66,15 @@ export const statisticsSlice = createSlice({
             .addCase(getStatisticsPizza.rejected, state => {
                 return {...state, loading: false, error: true};
             })
+            .addCase(getStatisticsOrderPerStaff.pending, state => {
+                return {...state, loading: true};
+            })
+            .addCase(getStatisticsOrderPerStaff.fulfilled, (state, action) => {
+                return {...state, loading: false, statsStaff: action.payload};
+            })
+            .addCase(getStatisticsOrderPerStaff.rejected, state => {
+                return {...state, loading: false, error: true};
+            })
     }
 });
 
@@ -64,5 +82,6 @@ export const {statisticsBestSeller, statisticsIncome} = statisticsSlice.actions;
 
 export const selectDataPizza = (state) => state.statistics.dataPizza;
 export const selectOrderStatus = (state) => state.statistics.orderStatus;
+export const selectOrderPerStaff = (state) => state.statistics.statsStaff;
 
 export default statisticsSlice.reducer;
