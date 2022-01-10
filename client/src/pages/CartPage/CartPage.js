@@ -127,8 +127,8 @@ const CartPage = ({history}) => {
                                 <div>
                                     <strong>Choose Payment Method</strong>
                                     <select id="paymentMethod" value={payment} onChange={e => setPayment(e.target.value)}>
-                                        <option value="online">Online</option>
-                                        <option value="offline">Offline</option>
+                                        <option value="online">Thanh toán Online</option>
+                                        <option value="offline">Thanh toán nhận hàng</option>
                                     </select>
                                 </div>
                                 <input type="text" placeholder="Address..." value={address} onChange={e => setAddress(e.target.value)} />
